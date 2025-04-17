@@ -1,19 +1,27 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
+import { addToStoreDB } from '../../utility/addToDB';
+import { ToastContainer, Bounce } from 'react-toastify';
 
 const BookDetails = () => {
     const { id } = useParams();
     const bookId = parseInt(id);
 
+
     const data = useLoaderData()
 
     const singleBook = data.find(book => book.bookId === bookId);
     console.log(singleBook);
+
+    const handleMarkAsRead = (id) => {
+        addToStoreDB(id);
+        
+    }
     return (
         <div className='mb-10'>
             <div className='flex items-center gap-10 justify-between flex-col lg:flex-row'>
                 <div className='bg-[#F3F3F3] rounded-2xl'>
-                    <img src={singleBook.image} alt="" className='w-4/5 lg:w-2xl lg:h-full mx-auto p-5'/>
+                    <img src={singleBook.image} alt="" className='w-4/5 lg:w-2xl lg:h-full mx-auto p-5' />
                 </div>
                 <div className='w-3/4'>
                     <div className='space-y-2.5 mb-4'>
@@ -42,7 +50,7 @@ const BookDetails = () => {
                     <div className='border border-dashed border-gray-200 my-5'></div>
 
                     <div className='space-y-2'>
-                    
+
                         <div className='flex items-center justify-between'>
                             <p className='text-sm lg:text-lg text-gray-500 font-semibold'>Number of Pages:</p>
                             <p className='text-sm lg:text-lg text-gray-900 font-bold'>{singleBook.totalPages}</p>
@@ -59,13 +67,26 @@ const BookDetails = () => {
                             <p className='text-sm lg:text-lg text-gray-500 font-semibold'>Rating:</p>
                             <p className='text-sm lg:text-lg text-gray-900 font-bold'>{singleBook.rating}</p>
                         </div>
-                        <div className='space-x-3'>
-                            <button className="btn btn-soft btn-success">Mark As Read</button>
+                        <div className='space-x-3 mt-5'>
+                            <button className="btn btn-soft btn-success" onClick={() => handleMarkAsRead(id)}>Mark As Read</button>
                             <button className="btn btn-accent">Add to wishList</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                transition={Bounce}
+            />
         </div>
     );
 };
