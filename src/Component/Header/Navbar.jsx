@@ -1,9 +1,10 @@
 import React from 'react';
+import { NavLink } from 'react-router';
 
 const Navbar = () => {
     const links = <>
-    <li className='mr-2'>Home</li>
-    <li className='mr-2'>About</li>
+    <NavLink to= "/" className='mr-2'>Home</NavLink>
+    <NavLink to='/about'>About</NavLink>
     </>
     return (
         <div className="navbar mb-10 mt-5">
