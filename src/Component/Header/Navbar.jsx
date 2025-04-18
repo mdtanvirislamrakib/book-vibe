@@ -2,10 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router';
 
 const Navbar = () => {
-    const links = <>
-    <NavLink to= "/" className='mr-2'>Home</NavLink>
-    <NavLink to='/readlist'>Listed Books</NavLink>
-    </>
     return (
         <div className="navbar mb-10 mt-5">
             <div className="navbar-start">
@@ -16,14 +12,16 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        {links}
+                        <NavLink to= "/" className='mr-2'>Home</NavLink>
+                        <NavLink to='/readlist'>Listed Books</NavLink>
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">Book Vibe</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    {links}
+                <NavLink to= "/" className='mr-2'>Home</NavLink>
+                <NavLink to='/readlist'>Listed Books</NavLink>
                 </ul>
             </div>
             <div className="navbar-end">

@@ -10,12 +10,13 @@ const BookDetails = () => {
 
     const data = useLoaderData()
 
-    const singleBook = data.find(book => book.bookId === bookId);
+     let singleBook = data.find(book => book.bookId === bookId);
     console.log(singleBook);
+
 
     const handleMarkAsRead = (id) => {
         addToStoreDB(id);
-        
+
     }
     return (
         <div className='mb-10'>

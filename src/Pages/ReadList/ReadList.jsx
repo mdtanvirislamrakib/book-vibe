@@ -11,23 +11,27 @@ const ReadList = () => {
     console.log(data);
     const [listOfRead, setListOfRead] = useState([])
     const [sort, setSort] = useState("");
+    console.log(listOfRead);
+    console.log(data);
+    useEffect(() => {
+        const storedData = getStoredBook();
+        const convertedStoredData = storedData.map(id => parseInt(id));
+
+        const myReadList = data.filter(book => convertedStoredData.includes(book.bookId));
+        setListOfRead(myReadList);
+
+    }, [data])
     const handleSortType = (type) => {
         setSort(type);
-        if(type === "pages") {
+        if (type === "pages") {
             const sortByPage = [...listOfRead.sort((a, b) => a.totalPages - b.totalPages)];
             setListOfRead(sortByPage)
         }
-        if(type === "ratings") {
+        if (type === "ratings") {
             const sortByRating = [...listOfRead.sort((a, b) => a.rating - b.rating)];
             setListOfRead(sortByRating)
         }
     }
-    useEffect(() => {
-        const storedData = getStoredBook();
-        const convertedStoredData = storedData.map(id => parseInt(id))
-        const myReadList = data.filter(book => convertedStoredData.includes(book.bookId))
-        setListOfRead(myReadList);
-    }, [data])
     return (
         <div>
             <div className='flex items-center justify-center'>
@@ -46,10 +50,12 @@ const ReadList = () => {
                 </TabList>
 
                 <TabPanel>
-                    <h2>my read list{listOfRead.length}</h2>
-                    {
-                        listOfRead.map(boi => <ReadBookList key={boi.bookId} boi = {boi}></ReadBookList>)
-                    }
+                    <div className='my-10'>
+                        {
+                            listOfRead.map(boi => <ReadBookList key={boi.bookId} boi={boi}></ReadBookList>)
+                        }
+                    </div>
+
                 </TabPanel>
                 <TabPanel>
                     <h2>Any content 2</h2>
