@@ -5,6 +5,7 @@ import { LuFileSpreadsheet } from "react-icons/lu";
 const ReadBookList = ({ boi }) => {
     return (
         <div>
+            
             <div className='mt-5'>
                 <div className=' border rounded-2xl shadow border-gray-400 p-5 flex gap-10 flex-col lg:flex-row items-center'>
                     <div className='bg-[#1313130D] rounded-xl p-3 lg:w-[220px] w-[170px]'>
@@ -43,7 +44,7 @@ const ReadBookList = ({ boi }) => {
                             <p className='text-[#FFAC33] bg-[#FFAC3326]  px-5 py-2 font-bold text-sm lg:text-lg rounded-4xl'>Rating: {boi.rating}</p>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
